@@ -46,4 +46,3 @@ docker build -t rag-app .
 docker run -p 8000:8000 rag-app
 
 Note: On the first query, the container will download the 4.1GB model file to its internal cache.
-
