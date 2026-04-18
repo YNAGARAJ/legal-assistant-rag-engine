@@ -48,3 +48,18 @@ A Retrieval-Augmented Generation (RAG) pipeline designed for privacy-compliant l
    docker run -p 8000:8000 rag-app
 
 Note: On the first query, the container will download the 4.1GB model file to its internal cache.
+
+**Model Choices & Reasoning:**
+
+A. LLM: Mistral-7B-Instruct-v0.1 (Quantized Q4_0)
+It consistently outperforms Llama-2-7B on coding and reasoning tasks while maintaining a smaller footprint.
+
+4-bit Quantization (GGUF)? * Memory Efficiency: A standard 7B model requires ~28GB of VRAM. Our quantized version fits into 4.5GB of RAM.
+
+B. Embeddings: all-MiniLM-L6-v2
+
+Reasoning: This is a "Goldilocks" model—small enough (80MB) to be fast on a CPU, but powerful enough to capture deep semantic meaning in legal text. It produces 384-dimensional vectors, which are more efficient for FAISS to index than the 1536-dimensional vectors used by OpenAI.
+
+C. Vector Store: FAISS (CPU)
+
+Reasoning: Developed by Meta, FAISS is the industry standard for dense vector similarity search. We chose the FlatL2 index for this project because it guarantees 100% accuracy in finding the closest context chunks for a document of this size.
