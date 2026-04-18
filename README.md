@@ -1,6 +1,6 @@
 # RAG API: US Constitution Legal Assistant
 
-A Retrieval-Augmented Generation (RAG) pipeline designed for local-first, privacy-compliant legal document analysis. This system processes the US Constitution to provide grounded, fact-based answers using local LLM inference.
+A Retrieval-Augmented Generation (RAG) pipeline designed for privacy-compliant legal document analysis. This system processes the US Constitution to provide grounded, fact-based answers using local LLM inference.
 
 ## Architecture Detail
 1. **Ingestion:** `PyPDFLoader` handles high-fidelity PDF parsing.
@@ -26,7 +26,6 @@ A Retrieval-Augmented Generation (RAG) pipeline designed for local-first, privac
 ## Execution Instructions
 
 1. **Initialize Environment:**
-   ```powershell
    python -m venv venv
    .\venv\Scripts\Activate.ps1
    pip install -r requirements.txt
@@ -35,14 +34,14 @@ A Retrieval-Augmented Generation (RAG) pipeline designed for local-first, privac
    uvicorn app.main:app --reload
 
 3. **Test the Endpoint:**
-Send a POST request to http://127.0.0.1:8000/query with JSON:
+   Send a POST request to http://127.0.0.1:8000/query with JSON:
 
-{ "question": "What is the process for amending the Constitution?" }
+   { "question": "What is the process for amending the Constitution?" }
 
 **Docker Instructions:**
 1) Build the Image:
-docker build -t rag-app .
+   docker build -t rag-app .
 2) Run the Container:
-docker run -p 8000:8000 rag-app
+   docker run -p 8000:8000 rag-app
 
 Note: On the first query, the container will download the 4.1GB model file to its internal cache.
