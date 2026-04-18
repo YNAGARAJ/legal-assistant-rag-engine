@@ -26,8 +26,11 @@ A Retrieval-Augmented Generation (RAG) pipeline designed for privacy-compliant l
 ## Execution Instructions
 
 1. **Initialize Environment:**
+
    python -m venv venv
+
    .\venv\Scripts\Activate.ps1
+
    pip install -r requirements.txt
 
 2. **Run the API:**
