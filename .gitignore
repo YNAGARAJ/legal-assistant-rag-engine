@@ -1,0 +1,22 @@
+# Python dependencies
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+
+# RAG Data & Persistence
+vectorstore/
+data/*.pdf
+!data/US_Constitution.pdf
+
+# Local LLM Models (GPT4All cache)
+models/
+*.gguf
+
+# OS specific
+.DS_Store
+Thumbs.db

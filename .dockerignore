@@ -1,0 +1,17 @@
+# Ignore everything first for a clean build context
+.git
+.gitignore
+.dockerignore
+.vscode/
+
+# Ignore local python env
+venv/
+.venv/
+__pycache__/
+
+# Ignore local RAG artifacts
+vectorstore/
+
+# Ignore documentation/notes
+README.md
+docs/
