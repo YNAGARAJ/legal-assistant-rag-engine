@@ -1,5 +1,5 @@
 import os
-from time import time
+import time
 from gpt4all import GPT4All
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -43,7 +43,7 @@ class RAGService:
             self.vector_db.save_local(self.full_vector_path)
 
     def query(self, question: str):
-        start_time = time.time()
+        start_time = time.perf_counter()
         if not self.vector_db:
             self.initialize_rag()
 
@@ -67,8 +67,9 @@ class RAGService:
         
         with self.model.chat_session():
             answer = self.model.generate(prompt, max_tokens=400, temp=0.1)
-        end_time = time.time()
-        print(f"[SUCCESS] Response generated in {round(end_time - start_time, 2)} seconds.\n")
+        end_time = time.perf_counter()
+        latency = round(end_time - start_time, 2)
+        print(f"[SUCCESS] Response generated in {latency} seconds.\n")
         return {
             "answer": answer.strip(), 
             "sources": [d.page_content for d in docs], 
